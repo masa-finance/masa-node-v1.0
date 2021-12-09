@@ -1,4 +1,4 @@
-# Masa Node V1.0
+# Masa Testnet Node V1.0
 
 ## Get Your IP Whitelisted
 You must have your IP whitelisted in order to join the Masa Testnet. Please reach out to us on Discord (https://discord.gg/SXwRKNMc) to get whitelisted!
