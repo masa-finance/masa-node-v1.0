@@ -1,5 +1,8 @@
 # Masa Node V1.0
 
+## Get Your IP Whitelisted
+You must have your IP whitelisted in order to join the Masa Testnet. Please reach out to us on Discord (https://discord.gg/SXwRKNMc) to get whitelisted!
+
 ## Get Docker
 1. Install Docker (https://www.docker.com/get-started)
     - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
@@ -16,10 +19,12 @@ cd masa-node-v1
 Directory structure
 ```
 masa-node-v1/
+├── network
+│   ├── testnet
+│       ├── genesis.json
 ├── node
 │   ├── data
 ├── node-ui
-├── genesis.json
 ├── docker-compose.yml
 ```
 
