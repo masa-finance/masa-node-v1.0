@@ -39,16 +39,18 @@ masa-node-v1/
 
 1. __Note__: to attach geth to your node Javascript console (use the same container id or name from `docker ps`
    ```sh
-   $ docker exec -it masa-node-v10_node geth attach /qdata/dd/geth.ipc
+   docker exec -it masa-node-v10_masa-node_1 geth attach /qdata/dd/geth.ipc
    Welcome to the Geth JavaScript console!
 
-   instance: Geth/node1-istanbul/v1.7.2-stable/linux-amd64/go1.9.7
-   coinbase: 0xd8dba507e85f116b1f7e231ca8525fc9008a6966
-   at block: 70 (Thu, 18 Oct 2018 14:49:47 UTC)
-    datadir: /qdata/dd
-    modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+   instance: Geth/node1-istanbul/v1.9.24-stable-d5ef77ca(quorum-v21.7.1)/linux-amd64/go1.15.5
+   coinbase: 0xa3178965a2022c8374afe6690182f54d48208d0a
+   at block: 18008 (Thu Dec 09 2021 20:45:32 GMT+0000 (UTC))
+   datadir: /qdata/dd
+   modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
-   > 
+To exit, press ctrl-d
+> 
+
    ```
 1. To shutdown the Masa Testnet Node
    ```sh
