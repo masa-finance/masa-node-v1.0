@@ -50,7 +50,6 @@ masa-node-v1/
 To exit, press ctrl-d
 > 
 
-   ```
 1. To shutdown the Masa Testnet Node
    ```sh
    docker-compose down
