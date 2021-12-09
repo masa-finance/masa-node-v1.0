@@ -47,8 +47,8 @@ masa-node-v1/
    at block: 18008 (Thu Dec 09 2021 20:45:32 GMT+0000 (UTC))
    datadir: /qdata/dd
    modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
-To exit, press ctrl-d
-> 
+   To exit, press ctrl-d
+   > 
 
 1. To shutdown the Masa Testnet Node
    ```sh
