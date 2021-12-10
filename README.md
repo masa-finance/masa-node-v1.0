@@ -30,12 +30,12 @@ Check your routing table by running `netstat -rn` from the command line to ensur
 ## Install The Masa Testnet Node v1.0
 
 ```
-git clone https://github.com/masa-finance/masa-node-v1
-cd masa-node-v1
+git clone https://github.com/masa-finance/masa-node-v1.0.git
+cd masa-node-v1.0
 ```
 Directory structure
 ```
-masa-node-v1/
+masa-node-v1.0/
 ├── network
 │   ├── testnet
 │       ├── genesis.json
@@ -49,7 +49,7 @@ masa-node-v1/
 
 1. Run ` PRIVATE_CONFIG=ignore docker-compose up -d`
    ```sh
-   cd masa-node-v1
+   cd masa-node-v1.0
    PRIVATE_CONFIG=ignore docker-compose up -d
    ```
 1. Run `docker ps` to verify that you masa-node container is **healthy**
