@@ -3,8 +3,8 @@
 ## Get An OpenVPN File
 You must must be connected to our OpenVPN network in order to join the Masa Testnet and access bootnodes and node IP's. Please reach out to an admin on Discord (https://discord.gg/SXwRKNMc) to get an OpenVPN file! Please download the OpenVPN Connect client to connect to the Masa Testnet cluster [here](https://openvpn.net/vpn-client/)
 
-#### Check you can access the node IP range througe OpenVPN
-Check your routing table to ensure you can access the Masa Testnet. You will see `172.16.239/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
+### Check you can access the node IP range througe OpenVPN
+Check your routing table by running `netstat -rn` from the command line to ensure you can access the Masa Testnet. You will see `172.16.239/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
 ```sh
    netstat -rn
 
