@@ -3,6 +3,23 @@
 ## Get An OpenVPN File
 You must must be connected to our OpenVPN network in order to join the Masa Testnet and access bootnodes and node IP's. Please reach out to an admin on Discord (https://discord.gg/SXwRKNMc) to get an OpenVPN file! Please download the OpenVPN Connect client to connect to the Masa Testnet cluster [here](https://openvpn.net/vpn-client/)
 
+#### Check you can access the node IP range througe OpenVPN
+Check your routing table to ensure you can access the Masa Testnet. You will see `172.16.239/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
+```sh
+   netstat -rn
+
+   Internet:
+   Destination        Gateway            Flags        Netif Expire
+   default            192.168.1.1        UGScg          en0       
+   10.254.0.1/32      10.254.0.17        UGSc         utun4       
+   10.254.0.16/30     10.254.0.18        UGSc         utun4       
+   10.254.0.17        10.254.0.18        UH           utun4       
+   127                127.0.0.1          UCS            lo0       
+   127.0.0.1          127.0.0.1          UH             lo0       
+   169.254            link#6             UCS            en0      !
+   172.16.239/24      10.254.0.17        UGSc         utun4       
+```
+
 ## Get Docker
 1. Install Docker (https://www.docker.com/get-started)
     - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
