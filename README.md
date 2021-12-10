@@ -1,7 +1,7 @@
 # Masa Testnet Node V1.0
 
-## Get Your IP Whitelisted
-You must have your IP whitelisted in order to join the Masa Testnet. Please reach out to us on Discord (https://discord.gg/SXwRKNMc) to get whitelisted!
+## Get An OpenVPN File
+You must must be connected to our OpenVPN network in order to join the Masa Testnet and access bootnodes and node IP's. Please reach out to an admin on Discord (https://discord.gg/SXwRKNMc) to get an OpenVPN file! Please download the OpenVPN Connect client to connect to the Masa Testnet cluster [here](https://openvpn.net/vpn-client/)
 
 ## Get Docker
 1. Install Docker (https://www.docker.com/get-started)
@@ -26,6 +26,7 @@ masa-node-v1/
 │   ├── data
 ├── node-ui
 ├── docker-compose.yml
+├── genesis.json
 ```
 
 
