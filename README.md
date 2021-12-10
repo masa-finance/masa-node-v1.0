@@ -3,8 +3,8 @@
 ## Get An OpenVPN File
 You must must be connected to our OpenVPN network in order to join the Masa Testnet and access bootnodes and node IP's. Please reach out to an admin on Discord (https://discord.gg/SXwRKNMc) to get an OpenVPN file! Please download the OpenVPN Connect client to connect to the Masa Testnet cluster [here](https://openvpn.net/vpn-client/)
 
-### Check you can access the node IP range througe OpenVPN
-Check your routing table by running `netstat -rn` from the command line to ensure you can access the Masa Testnet. You will see `172.16.239/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
+### Check you can access the node IP range through OpenVPN
+Check your routing table by running `netstat -rn` from the command line to ensure you can access the Masa Testnet. You will see `172.16.239.0/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
 ```sh
    netstat -rn
 
@@ -14,10 +14,10 @@ Check your routing table by running `netstat -rn` from the command line to ensur
    10.254.0.1/32      10.254.0.17        UGSc         utun4       
    10.254.0.16/30     10.254.0.18        UGSc         utun4       
    10.254.0.17        10.254.0.18        UH           utun4       
-   127                127.0.0.1          UCS            lo0       
+   127.0.0.1          127.0.0.1          UCS            lo0       
    127.0.0.1          127.0.0.1          UH             lo0       
    169.254            link#6             UCS            en0      !
-   172.16.239/24      10.254.0.17        UGSc         utun4       
+   172.16.239.0/24      10.254.0.17        UGSc         utun4       
 ```
 
 ## Get Docker
@@ -30,7 +30,7 @@ Check your routing table by running `netstat -rn` from the command line to ensur
 ## Install The Masa Testnet Node v1.0
 
 ```
-git clone https://github.com/masa-finance/masa-node-v1
+git clone https://github.com/masa-finance/masa-node-v1.0.git
 cd masa-node-v1
 ```
 Directory structure
