@@ -3,6 +3,35 @@
 ## Get An OpenVPN File
 You must must be connected to our OpenVPN network in order to join the Masa Testnet and access bootnodes and node IP's. Please reach out to an admin on Discord (https://discord.gg/SXwRKNMc) to get an OpenVPN file! Please download the OpenVPN Connect client to connect to the Masa Testnet cluster [here](https://openvpn.net/vpn-client/)
 
+## Starting OpenVPN service example:
+```sh
+root@server: apt install openvpn net-tools -y
+
+root@server: vim /etc/openvpn/client/masa-testnet-dev-client-community.ovpn  # <-- put Your config here
+
+root@server: openvpn --config /etc/openvpn/client/masa-testnet-dev-client-community.ovpn  # <-- check it's ok and [ctrl+c]
+
+root@server: echo '[Unit]
+Description=OpenVPN connection
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/openvpn --status /run/openvpn/masa.status 10 --cd /etc/openvpn/client/ --config /etc/openvpn/client/masa-testnet-dev-client-community.ovpn
+ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=/etc/openvpn
+
+[Install]
+WantedBy=multi-user.target
+openvpn@.service ' >> /etc/systemd/system/masa-openvpn.service
+
+root@server: systemctl daemon-reload
+
+root@server: systemctl enable masa-openvpn.service
+
+root@server: systemctl start masa-openvpn.service
+```
+
 ### Check you can access the node IP range througe OpenVPN
 Check your routing table by running `netstat -rn` from the command line to ensure you can access the Masa Testnet. You will see `172.16.239/24      10.254.0.17        UGSc         utun4` if you have OpenVPN setup correctly. 
 ```sh
