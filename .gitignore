@@ -17,3 +17,6 @@
 **/keystore
 **geth.ipc
 # geth node build files 
+
+# Mac OSX directory index
+.DS_Store
