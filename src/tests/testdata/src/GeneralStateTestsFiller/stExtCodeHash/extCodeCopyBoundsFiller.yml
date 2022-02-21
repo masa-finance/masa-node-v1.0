@@ -47,7 +47,7 @@ extCodeCopyBounds:
       }
     a94f5374fce5edbc8e2a8697c15331677e6ebf0b:
       balance: '1000000000000000000'
-      code: '0x00'
+      code: ':raw 0x00'
       nonce: '0'
       storage: {}
   expect:
@@ -61,7 +61,7 @@ extCodeCopyBounds:
         095e7baea6a6c7c4c2dfeb977efac326af552d87:
           balance: '1000000000000000001'
           storage: {
-            4: '0x600b606355600a606355000000000000000000000000000000000000000000'
+            "0x04": '0x600b606355600a606355000000000000000000000000000000000000000000'
           }
   transaction:
     data:

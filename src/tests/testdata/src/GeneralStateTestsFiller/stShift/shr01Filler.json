@@ -1,7 +1,7 @@
 {
     "shr01" : {
         "_info" : {
-            "commment" : "Taken from https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md"
+            "comment" : "Taken from https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md"
         },
         "env" : {
             "currentCoinbase" : "2adc25665018aa1fe0e6bc666dac8fc2697ff9ba",
@@ -45,7 +45,7 @@
             "095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
                 "balance" : "1000000000000000000",
                 "// code" : "PUSH1 0; PUSH1 1; SHR; PUSH1 0; SSTORE",
-                "code" : "0x600060011c600055",
+                "code" : ":raw 0x600060011c600055",
                 "nonce" : "0",
                 "storage" : {
                     "0x00" : "0x03"

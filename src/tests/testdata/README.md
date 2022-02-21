@@ -35,8 +35,9 @@ The following clients make use of the tests from this library. You can use these
 - [Parity Ethereum](https://github.com/paritytech/parity-ethereum) (Rust): [Docs](https://wiki.parity.io/Coding-guide), Test location: ``ethcore/res/ethereum/tests``
 - [ethereumjs-vm](https://github.com/ethereumjs/ethereumjs-vm) (JavaScript): [Docs](https://github.com/ethereumjs/ethereumjs-vm#testing), Test location: ``ethereumjs-testing`` dependency
 - [Trinity](https://github.com/ethereum/py-evm) (Python): [Docs](https://py-evm.readthedocs.io/en/latest/contributing.html#running-the-tests), Test location: `fixtures`
-- [Pantheon](https://github.com/PegaSysEng/pantheon) (Java): [Docs](https://github.com/PegaSysEng/pantheon/blob/master/docs/development/building.md#ethereum-reference-tests), Test Location: ``ethereum/referencetests/src/test/resources``
+- [Hyperledger Besu](https://github.com/hyperledger/besu) (Java): [Docs](https://wiki.hyperledger.org/display/BESU/Testing), Test Location: ``ethereum/referencetests/src/test/resources``
 - [Nethermind](https://github.com/NethermindEth/nethermind) (C#) [Docs](https://nethermind.readthedocs.io), Test Location: ``src/tests``
+- [Nimbus-eth1](https://github.com/status-im/nimbus-eth1) (Nim) [Docs](https://github.com/status-im/nimbus-eth1/wiki/Understanding-and-debugging-Nimbus-EVM-JSON-tests), Test location: ``tests/fixtures``
 
 Using the Tests
 ---------------
@@ -65,5 +66,5 @@ Do not change test files in folders:
 
 It is being created by the testFillers which could be found at src folder. The filler specification and wiki are in development so please ask on gitter channel for more details.
 
-If you want to modify a test filler or add a new test please contact @winsvega at https://gitter.im/ethereum/aleth. 
+If you want to modify a test filler or add a new test please contact @wdimitry at telegram
 Use the following guide: https://github.com/ethereum/retesteth/wiki/Creating-a-State-Test-with-retesteth 

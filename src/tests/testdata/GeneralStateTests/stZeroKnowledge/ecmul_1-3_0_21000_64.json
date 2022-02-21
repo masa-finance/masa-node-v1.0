@@ -2,11 +2,11 @@
     "ecmul_1-3_0_21000_64" : {
         "_info" : {
             "comment" : "Puts the point (1, 3) and the factor 0 into the ECMUL precompile, truncating or expanding the input data to 64 bytes. Gives the execution 21000 bytes",
-            "filling-rpc-server" : "Geth-1.9.6-unstable-63b18027-20190920",
-            "filling-tool-version" : "retesteth-0.0.1+commit.0ae18aef.Linux.g++",
-            "lllcversion" : "Version: 0.5.12-develop.2019.9.13+commit.2d601a4f.Linux.g++",
+            "filling-rpc-server" : "evm version 1.9.23-unstable-0efc69a9-20201022",
+            "filling-tool-version" : "retesteth-0.0.9-berlin+commit.2f30f0ea.Linux.g++",
+            "lllcversion" : "Version: 0.5.14-develop.2020.6.22+commit.9189ad7a.Linux.g++",
             "source" : "src/GeneralStateTestsFiller/stZeroKnowledge/ecmul_1-3_0_21000_64Filler.json",
-            "sourceHash" : "6cab15b22b824d7409b1a68e3109d0df48fb479923a6452b94010de9ceedc52b"
+            "sourceHash" : "31de51600fc2740d258b8591270aacd6760c2626fd40fda7de59151712229fe8"
         },
         "env" : {
             "currentCoinbase" : "0x3535353535353535353535353535353535353535",
@@ -17,6 +17,44 @@
             "previousHash" : "0xc6745cf3cada515bbfb9573261c82547e0b8f9e3d5dd382e464704a84e47b5ad"
         },
         "post" : {
+            "Berlin" : [
+                {
+                    "indexes" : {
+                        "data" : 0,
+                        "gas" : 0,
+                        "value" : 0
+                    },
+                    "hash" : "0x69e44bbebc92a455bf8aa92677202250d90281badc176dbe60c526aaaf1a7e0c",
+                    "logs" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+                },
+                {
+                    "indexes" : {
+                        "data" : 0,
+                        "gas" : 1,
+                        "value" : 0
+                    },
+                    "hash" : "0xa9cd3215fc1d405f8f283e8deb8f8b88fcc1b63d34a9e72ff95a944ad0e638dd",
+                    "logs" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+                },
+                {
+                    "indexes" : {
+                        "data" : 0,
+                        "gas" : 2,
+                        "value" : 0
+                    },
+                    "hash" : "0x7260025867d4cc0dd25f30d72dafa4042c3de888b8788c4b545ae20afdc9ade9",
+                    "logs" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+                },
+                {
+                    "indexes" : {
+                        "data" : 0,
+                        "gas" : 3,
+                        "value" : 0
+                    },
+                    "hash" : "0x473a11906cf710eeef97d503642998f2bde7545afbfe35dbc28c1383977c0b15",
+                    "logs" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+                }
+            ],
             "Istanbul" : [
                 {
                     "indexes" : {
@@ -213,7 +251,7 @@
             "secretKey" : "0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d",
             "to" : "0xc305c901078781c232a2a521c2af7980f8385ee9",
             "value" : [
-                "0x"
+                "0x00"
             ]
         }
     }
