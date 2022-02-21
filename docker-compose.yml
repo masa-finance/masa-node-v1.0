@@ -4,7 +4,7 @@ version: "3.6"
 x-masa-testnet-node-v10-def:
   &masa-testnet-node-v10-def
   restart: "on-failure"
-  image: "${MASA_DOCKER_IMAGE:-quorumengineering/quorum:21.7.1}"
+  image: "${MASA_DOCKER_IMAGE:-quorumengineering/quorum:22.1}"
   expose:
     - "21000"
     - "50400"
@@ -27,20 +27,20 @@ x-masa-testnet-node-v10-def:
       GENESIS_FILE="/network/genesis.json"
       CONSENSUS_RPC_API="istanbul"
       NETWORK_ID=$$(cat $${GENESIS_FILE} | grep chainId | awk -F " " '{print $$2}' | awk -F "," '{print $$1}')
-      GETH_ARGS_istanbul="--emitcheckpoints --istanbul.blockperiod 1 --mine --minerthreads 1 --syncmode full"
+      GETH_ARGS_istanbul="--emitcheckpoints --istanbul.blockperiod 1 --mine --miner.threads 1 --syncmode full"
       geth --datadir $${DDIR} init $${GENESIS_FILE}
       geth \
         --identity node$${NODE_ID}-${MASA_CONSENSUS:-istanbul} \
         --datadir $${DDIR} \
-        --bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@172.16.239.11:21000 \
+        --bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000 \
         --verbosity 5 \
         --networkid $${NETWORK_ID} \
-        --rpc \
-        --rpccorsdomain "*" \
-        --rpcvhosts "*" \
-        --rpcaddr 0.0.0.0 \
-        --rpcport 8545 \
-        --rpcapi admin,eth,debug,miner,net,shh,txpool,personal,web3,quorum,$${CONSENSUS_RPC_API} \
+        --http \
+        --http.corsdomain "*" \
+        --http.vhosts "*" \
+        --http.addr 0.0.0.0 \
+        --http.port 8545 \
+        --http.api admin,eth,debug,miner,net,shh,txpool,personal,web3,quorum,$${CONSENSUS_RPC_API} \
         --port 21000 \
         --nousb \
         ${MASA_GETH_ARGS:-} $${GETH_ARGS_${MASA_CONSENSUS:-istanbul}}
