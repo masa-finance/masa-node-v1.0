@@ -16,4 +16,12 @@
 **/geth
 **/keystore
 **geth.ipc
+**/build/bin
 # geth node build files 
+
+# OS generated files #
+######################
+*.DS_Store
+**.DS_Store
+.DS_Store
+.DS_Store?
