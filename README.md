@@ -2,7 +2,7 @@
 ## Release Date
 February 22nd, 2022
 # Run With Docker
-This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here] (#run-with-geth).
+This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here](#run-with-geth).
 ## Get Docker
 1. Install Docker (https://www.docker.com/get-started)
     - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
