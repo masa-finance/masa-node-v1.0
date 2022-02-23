@@ -13,7 +13,6 @@ The Docker compose file also launches the Node UI which can be accessed at the f
 `http://localhost:3000`
 
 Navigate here to interact with the node
-
 ```
 git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0
@@ -79,8 +78,9 @@ enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d427
 enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
 ```
 #### Community Bootnodes
-Submit a PR to add a bootnode to the community list here. 
-
+Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
+## Node Syncing
+It can take some time for your node to fully sync to the Masa Testnet 2.0 - please be patient while your node catches up with the most recent blocks.
 ## Node UI
 ### Specification
 - React.js & Typescript
@@ -173,3 +173,42 @@ INFO [12-09|18:22:24.205] Successfully wrote genesis state         database=ligh
 Set your own identity of your node on the Masa protocol to be easily identified in a list of peers. 
 
 For example; we name our node 'MasaMoonNode' by setting the flag `--identity MasaMoonNode` will set up an identity for your node so it can be identified as MasaMoonNode in a list of peers.
+**Update your flag `--identity MasaMoonNode` to be unique**
+## Start the node
+In the `node` directory, start the node by running the following command:
+```
+PRIVATE_CONFIG=ignore geth --identity MasaMoonNode --datadir data --bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000 --emitcheckpoints --istanbul.blockperiod 1 --mine --miner.threads 1 --syncmode full --verbosity 5 --networkid 190250 --rpc --rpccorsdomain "*" --rpcvhosts "*" --rpcaddr 127.0.0.1 --rpcport 8545 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --port 30300
+```
+### Additional Bootnodes
+Masa operates several bootnodes, one is already included in the comnand above by default. If you are having issues connecting to the bootnode please use an alternaitve from the list below.
+
+We are also looking for community run bootnodes to add to our list. Please reach out to us on Discord or Submit a PR to this repo if you want to add a bootnode to the community list.
+#### Masa Bootnodes
+```
+enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000
+
+enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000
+
+enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000
+
+enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
+```
+#### Community Bootnodes
+Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
+## Node Syncing
+It can take some time for your node to fully sync to the Masa Testnet 2.0 - please be patient while your node catches up with the most recent blocks.
+## Node UI
+You must be running Docker to run the Node UI with geth
+### Specification
+- React.js & Typescript
+- Docker for deployment
+## Run The Masa Node UI
+Follow these instructions to run the Node UI with geth
+```
+cd masa-node-v1.0
+cd src
+cd ui
+docker-compose up ui
+```
+Navigate to you local host to interact with the Masa Node
+`http://localhost:3000`
