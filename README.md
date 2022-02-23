@@ -71,4 +71,4 @@ masa-node-v1/
 - The Node UI runs when you deploy using the Docker compose files above
 Navigate to you local host to interact with the Masa Node
 `http://localhost:3000`
-#Run With Geth
+# Run With Geth
