@@ -6,16 +6,17 @@ February 22nd, 2022
     - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
     - Make sure your Docker daemon has at least 4G memory
     - Required: Docker Engine 18.02.0+ and Docker Compose 1.21+
-## Install The Masa Testnet Node v1.0
+## Install The Masa Testnet Node v1.01
 The Docker compose file also launches the Node UI which can be accessed at the following URL
 `http://localhost:3000`
+
 Navigate here to interact with the node
 
 ```
 git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0
 ```
-Directory structure
+### Directory structure
 ```
 masa-node-v1/
 ├── network
