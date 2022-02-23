@@ -1,6 +1,8 @@
 # Masa Testnet Node V1.01
 ## Release Date
 February 22nd, 2022
+## Roadmap & Todo's
+The Masa Node UI is in alpha and will get incremental releases, please report all bugs you find to bugs@masa.finance or submit an issue [here](https://github.com/masa-finance/masa-node-v1.0/issues)
 # Run With Docker
 This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here](#run-with-geth).
 ## Get Docker
