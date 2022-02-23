@@ -1,6 +1,8 @@
 # Masa Testnet Node V1.01
 ## Release Date
 February 22nd, 2022
+# Run With Docker
+This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here] (#run-with-geth).
 ## Get Docker
 1. Install Docker (https://www.docker.com/get-started)
     - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
@@ -69,3 +71,4 @@ masa-node-v1/
 - The Node UI runs when you deploy using the Docker compose files above
 Navigate to you local host to interact with the Masa Node
 `http://localhost:3000`
+#Run With Geth
