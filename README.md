@@ -65,7 +65,9 @@ masa-node-v1/
 1. Docker is frozen or containers crash and reboot
     - Check if your Docker daemon is allocated enough memory (minimum 4G)
 ### Additional Bootnodes
-Masa operates several bootnodes that are included in the Docker file by default. We are also looking for community run bootnodes to add to our list. Please reach out to us on Discord or Submit a PR to this repo if you want to add a bootnode to the community list.
+Masa operates several bootnodes, one is already included in the Docker file by default. If you are having issues connecting to the bootnode please use an alternaitve from the list below.
+
+We are also looking for community run bootnodes to add to our list. Please reach out to us on Discord or Submit a PR to this repo if you want to add a bootnode to the community list.
 #### Masa Bootnodes
 ```
 enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000
@@ -77,6 +79,7 @@ enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d427
 enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
 ```
 #### Community Bootnodes
+Submit a PR to add a bootnode to the community list here. 
 
 ## Node UI
 ### Specification
@@ -86,3 +89,87 @@ enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f
 Navigate to you local host to interact with the Masa Node
 `http://localhost:3000`
 # Run With Geth
+To run from source follow these steps
+## Clone the repository and build the source:
+```
+git clone https://github.com/masa-finance/masa-node-v1.0
+cd masa-node-v1.0/src
+make all
+```
+**`make all` must be run from within the src folder**
+## Run the tests: 
+```
+make test
+```
+## Add PATH
+### Method 1
+Binaries are placed in `$REPO_ROOT/build/bin`. You must add the `bin` folder to `PATH` to make `geth` and `bootnode` easily invokable from the command line. For example, if `Users/yourname/masa-node-v1.0` is the location you have cloned the masa-node repository to on your computer. In your terminal run 
+```
+sudo nano /etc/paths
+or
+export PATH=$PATH:$REPO_ROOT/build/bin
+```
+Remember to source your $PATH or restart the terminal. Run `echo $PATH` from the command line to check that the `PATH` has been added correctly. 
+
+For example;
+```
+echo $PATH
+
+gives the following response
+
+/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/quorum/build/bin:/Users/yourname/masa-node/build/bin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+```
+### Method 2
+The second way to make geth and bootnode easily invokable is to copy the binaries located in `$REPO_ROOT/build/bin` to a folder already in your `PATH` file such as `/usr/local/bin`.
+### Method 3
+
+You can also supplement `PATH` by adding add `PATH=$PATH:$REPO_ROOT/build/bin` to your `~/.bashrc`, `~/.bash_aliases`, or `~/bash_profile` file.
+## Testing PATH
+When you run geth from the command line from an arbitrary folder you will get the following output on the terminal.
+```
+geth
+
+returns
+
+INFO [12-08|05:37:18.131] Starting Geth on Ethereum mainnet... 
+INFO [12-08|05:37:18.131] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [12-08|05:37:18.131] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-08|05:37:18.132] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-08|05:37:18.160] Set global gas cap                       cap=25000000
+INFO [12-08|05:37:18.160] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-08|05:37:18.160] Allocated trie memory caches             clean=1023.00MiB dirty=1024.00MiB
+INFO [12-08|05:37:18.160] Allocated cache and file handles         database=/Users/brendanplayford/Library/Ethereum/geth/chaindata cache=2.00GiB ...
+...
+INFO [12-08|05:37:18.751] Started P2P networking                   self=enode://162cfffb34b0c3e76abeb9f31541737fcd3b622e35fa3b0080a14dfb9d2a53168ac3abf10122b79d3b8d7d55516982e0f903d179916ccb51abe5cd00de1bdb07@127.0.0.1:30303
+INFO [12-08|05:37:18.752] IPC endpoint opened                      url=/Users/brendanplayford/Library/Ethereum/geth.ipc isMultitenant=false
+INFO [12-08|05:37:18.752] Security Plugin is not enabled 
+Fatal: Consensus not specified. Exiting!!
+```
+## Initialize the node
+Navigate to the `node` directory and initialize the first node.
+The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../genesis.json`
+
+Run the following command
+```
+cd node
+geth --datadir data init ../genesis.json
+```
+You will get the following output;
+```
+INFO [12-09|18:22:24.031] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-09|18:22:24.035] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-09|18:22:24.063] Set global gas cap                       cap=25000000
+INFO [12-09|18:22:24.064] Allocated cache and file handles         database=/Users/brendanplayford/masa/masa-node-v1.0/node/data/geth/chaindata cache=16.00MiB handles=16
+INFO [12-09|18:22:24.135] Writing custom genesis block 
+INFO [12-09|18:22:24.140] Persisted trie from memory database      nodes=7 size=1.02KiB time="280.583µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-09|18:22:24.141] Successfully wrote genesis state         database=chaindata hash="69b521…fb4c77"
+INFO [12-09|18:22:24.141] Allocated cache and file handles         database=/Users/brendanplayford/masa/masa-node-v1.0/node/data/geth/lightchaindata cache=16.00MiB handles=16
+INFO [12-09|18:22:24.204] Writing custom genesis block 
+INFO [12-09|18:22:24.205] Persisted trie from memory database      nodes=7 size=1.02KiB time="162.437µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-09|18:22:24.205] Successfully wrote genesis state         database=lightchaindata hash="69b521…fb4c77"
+```
+
+## Set your node identity
+Set your own identity of your node on the Masa protocol to be easily identified in a list of peers. 
+
+For example; we name our node 'MasaMoonNode' by setting the flag `--identity MasaMoonNode` will set up an identity for your node so it can be identified as MasaMoonNode in a list of peers.
