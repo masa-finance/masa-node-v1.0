@@ -80,6 +80,9 @@ enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d427
 enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
 ```
 #### Community Bootnodes
+```
+enode://31408a35627aea4eb8fb7fa26e6f63a28a15f5fa3b782ede955425de2ab8c027e0895885db15ed808f4162f2e896abefb1fa348bfa5f9a1ff590bbe17ccd3425@23.88.67.106:21000
+```
 Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
 ## Node Syncing
 It can take some time for your node to fully sync to the Masa Testnet 2.0 - please be patient while your node catches up with the most recent blocks.
