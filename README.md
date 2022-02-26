@@ -154,7 +154,7 @@ The repo directory includes the `genesis.json` file that is used to connect to t
 Run the following command
 ```
 cd node
-geth --datadir data init ../genesis.json
+geth --datadir data init ../network/testnet/genesis.json
 ```
 You will get the following output;
 ```
