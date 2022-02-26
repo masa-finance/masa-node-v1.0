@@ -62,7 +62,7 @@ Fatal: Consensus not specified. Exiting!!
 ```
 ## Initialize the node
 Navigate to the `node` directory and initialize the first node.
-The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../genesis.json`
+The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../network/testnet/genesis.json`
 
 Run the following command
 ```

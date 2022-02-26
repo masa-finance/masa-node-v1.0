@@ -60,26 +60,14 @@ type proposerPolicyToml struct {
 	Id ProposerPolicyId
 }
 
-func (p *ProposerPolicy) MarshalTOML() (interface{}, error) {
-	if p == nil {
-		return nil, nil
-	}
+func (p *ProposerPolicy) MarshalTOML() ([]byte, error) {
 	pp := &proposerPolicyToml{Id: p.Id}
-	data, err := toml.Marshal(pp)
-	if err != nil {
-		return nil, err
-	}
-	return string(data), nil
+	return toml.Marshal(pp)
 }
 
-func (p *ProposerPolicy) UnmarshalTOML(decode func(interface{}) error) error {
-	var innerToml string
-	err := decode(&innerToml)
-	if err != nil {
-		return err
-	}
+func (p *ProposerPolicy) UnmarshalTOML(input []byte) error {
 	var pp proposerPolicyToml
-	err = toml.Unmarshal([]byte(innerToml), &pp)
+	err := toml.Unmarshal(input, &pp)
 	if err != nil {
 		return err
 	}
