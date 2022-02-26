@@ -1,104 +1,216 @@
-# <img src="https://raw.githubusercontent.com/consensys/quorum/master/logo.png" width="200" height="35"/>
+# Masa Testnet Node V1.01
+## Release Date
+February 22nd, 2022
+## Roadmap & Todo's
+The Masa Node UI is in alpha and will get incremental releases, please report all bugs you find to bugs@masa.finance or submit an issue [here](https://github.com/masa-finance/masa-node-v1.0/issues)
+# Run With Docker
+This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here](#run-with-geth).
+## Get Docker
+1. Install Docker (https://www.docker.com/get-started)
+    - If your Docker distribution does not contain `docker-compose`, follow [this](https://docs.docker.com/compose/install/) to install Docker Compose
+    - Make sure your Docker daemon has at least 4G memory
+    - Required: Docker Engine 18.02.0+ and Docker Compose 1.21+
+## Install The Masa Testnet Node v1.01
+The Docker compose file also launches the Node UI which can be accessed at the following URL
+`http://localhost:3000`
 
+Navigate here to interact with the node
+```
+git clone https://github.com/masa-finance/masa-node-v1.0
+cd masa-node-v1.0
+```
+### Directory structure
+```
+masa-node-v1/
+├── network
+│   ├── testnet
+│       ├── genesis.json
+├── node
+│   ├── data
+├── src
+│   ├── ui
+│   ├── geth files
+│   ├── ...
+├── docker-compose.yml
+├── genesis.json
+```
+## Run Docker
+1. Run ` PRIVATE_CONFIG=ignore docker-compose up -d`
+   ```sh
+   cd masa-node-v1.0
+   PRIVATE_CONFIG=ignore docker-compose up -d
+   ```
+1. Run `docker ps` to verify that you masa-node container is **healthy**
+1. Run `docker logs <container-name> -f` to view the logs for a particular container
 
-![Build Check](https://github.com/jpmorganchase/quorum/workflows/Build%20Check/badge.svg?branch=master)
-[![Docker Pulls](https://img.shields.io/docker/pulls/quorumengineering/quorum)](https://hub.docker.com/r/quorumengineering/quorum)
-[![Discord](https://img.shields.io/discord/697535391594446898)](https://discord.com/channels/697535391594446898/747810572937986240)
+1. __Note__: to attach geth to your node Javascript console (use the same container id or name from `docker ps`
+   ```sh
+   docker exec -it masa-node-v10_masa-node_1 
+   geth attach /qdata/dd/geth.ipc
 
+   Welcome to the Geth JavaScript console!
 
-GoQuorum is an Ethereum-based distributed ledger protocol with transaction/contract privacy and new consensus mechanisms.
+   instance: Geth/node1-istanbul/v1.9.24-stable-d5ef77ca(quorum-v21.7.1)/linux-amd64/go1.15.5
+   coinbase: 0xa3178965a2022c8374afe6690182f54d48208d0a
+   at block: 18008 (Thu Dec 09 2021 20:45:32 GMT+0000 (UTC))
+   datadir: /qdata/dd
+   modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+   To exit, press ctrl-d
+   > 
 
-GoQuorum is a fork of [go-ethereum](https://github.com/ethereum/go-ethereum) and is updated in line with go-ethereum releases.
+1. To shutdown the Masa Testnet Node
+   ```sh
+   docker-compose down
+   ```
+## Troubleshooting Docker
+1. Docker is frozen or containers crash and reboot
+    - Check if your Docker daemon is allocated enough memory (minimum 4G)
+### Additional Bootnodes
+Masa operates several bootnodes, one is already included in the Docker file by default. If you are having issues connecting to the bootnode please use an alternaitve from the list below.
 
-Key enhancements over go-ethereum:
+We are also looking for community run bootnodes to add to our list. Please reach out to us on Discord or Submit a PR to this repo if you want to add a bootnode to the community list.
+#### Masa Bootnodes
+```
+enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000
 
-* [__Privacy__](https://consensys.net/docs/goquorum//en/latest/concepts/privacy/privacy/) - GoQuorum supports private transactions and private contracts through public/private state separation, and utilises peer-to-peer encrypted message exchanges (see [Tessera](https://github.com/consensys/tessera)) for directed transfer of private data to network participants
-* [__Alternative Consensus Mechanisms__](https://consensys.net/docs/goquorum//en/latest/concepts/consensus/overview/) - with no need for POW/POS in a permissioned network, GoQuorum instead offers multiple consensus mechanisms that are more appropriate for consortium chains:
-    * [__QBFT__](https://consensys.net/docs/goquorum/en/latest/configure-and-manage/configure/consensus-protocols/qbft/) - Improved version of IBFT that is interoperable with Hyperledger Besu
-    * [__Istanbul BFT__](https://consensys.net/docs/goquorum/en/latest/configure-and-manage/configure/consensus-protocols/ibft/) - a PBFT-inspired consensus algorithm with transaction finality, by AMIS.
-    * [__Clique POA Consensus__](https://github.com/ethereum/EIPs/issues/225) - a default POA consensus algorithm bundled with Go Ethereum.
-    * [__Raft-based Consensus__](https://consensys.net/docs/goquorum/en/latest/configure-and-manage/configure/consensus-protocols/raft/) - a consensus model for faster blocktimes, transaction finality, and on-demand block creation
-* [__Peer Permissioning__](https://consensys.net/docs/goquorum/en/latest/concepts/permissions-overview/) - node/peer permissioning, ensuring only known parties can join the network
-* [__Account Management__](https://consensys.net/docs/goquorum/en/latest/concepts/account-management/) - GoQuorum introduced account plugins, which allows GoQuorum or clef to be extended with alternative methods of managing accounts including external vaults.
-* [__Pluggable Architecture__](https://consensys.net/docs/goquorum/en/latest/concepts/plugins/) -  allows adding additional features as plugins to the core `geth`, providing extensibility, flexibility, and distinct isolation of GoQuorum features.
-* __Higher Performance__ - GoQuorum offers significantly higher performance throughput than public geth
+enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000
 
-## Architecture
+enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000
 
-![GoQuorum Tessera Privacy Flow](https://github.com/consensys/quorum/blob/master/docs/Quorum%20Design.png)
+enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
+```
+#### Community Bootnodes
+Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
+## Node Syncing
+It can take some time for your node to fully sync to the Masa Testnet 2.0 - please be patient while your node catches up with the most recent blocks.
+## Node UI
+### Specification
+- React.js & Typescript
+- Docker for deployment
+- The Node UI runs when you deploy using the Docker compose files above
+Navigate to you local host to interact with the Masa Node
+`http://localhost:3000`
+# Run With Geth
+To run from source follow these steps
+## Clone the repository and build the source:
+```
+git clone https://github.com/masa-finance/masa-node-v1.0
+cd masa-node-v1.0/src
+make all
+```
+**`make all` must be run from within the src folder**
+## Run the tests: 
+```
+make test
+```
+## Add PATH
+### Method 1
+Binaries are placed in `$REPO_ROOT/build/bin`. You must add the `bin` folder to `PATH` to make `geth` and `bootnode` easily invokable from the command line. For example, if `Users/yourname/masa-node-v1.0` is the location you have cloned the masa-node repository to on your computer. In your terminal run 
+```
+sudo nano /etc/paths
+or
+export PATH=$PATH:$REPO_ROOT/build/bin
+```
+Remember to source your $PATH or restart the terminal. Run `echo $PATH` from the command line to check that the `PATH` has been added correctly. 
 
-The above diagram is very high-level overview of component architecture used by GoQuorum. For more in-depth discussion of the components and how they interact, please refer to [lifecycle of a private transaction](https://consensys.net/docs/goquorum/en/latest/concepts/privacy/private-transaction-lifecycle/).
+For example;
+```
+echo $PATH
 
-## Quickstart
-The easiest way to get started is to use * [quorum-dev-quickstart](https://consensys.net/docs/goquorum/en/latest/tutorials/quorum-dev-quickstart/getting-started/) - a command line tool that allows users to set up a development GoQuorum network on their local machine in less than *2 minutes*.
+gives the following response
 
-## GoQuorum Projects
+/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/quorum/build/bin:/Users/yourname/masa-node/build/bin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+```
+### Method 2
+The second way to make geth and bootnode easily invokable is to copy the binaries located in `$REPO_ROOT/build/bin` to a folder already in your `PATH` file such as `/usr/local/bin`.
+### Method 3
 
-Check out some of the interesting projects we are actively working on:
+You can also supplement `PATH` by adding add `PATH=$PATH:$REPO_ROOT/build/bin` to your `~/.bashrc`, `~/.bash_aliases`, or `~/bash_profile` file.
+## Testing PATH
+When you run geth from the command line from an arbitrary folder you will get the following output on the terminal.
+```
+geth
 
-* [quorum-remix-plugin](https://consensys.net/docs/goquorum/en/latest/tutorials/quorum-dev-quickstart/remix/): The GoQuorum plugin for Ethereum's Remix IDE adds support for creating and interacting with private contracts on a GoQuorum network.
-* [Cakeshop](https://consensys.net/docs/goquorum/en/latest/configure-and-manage/monitor/cakeshop/): An integrated development environment and SDK for GoQuorum
-* [quorum-examples](https://github.com/ConsenSys/quorum-examples): GoQuorum demonstration examples
-* <img src="docs/images/qubernetes/k8s-logo.png" width="15"/> [Quorum-Kubernetes](https://consensys.net/docs/goquorum/en/latest/deploy/install/kubernetes/): Deploy GoQuorum on Kubernetes
-* [we3js-quorum](https://consensys.net/docs/goquorum/en/latest/reference/web3js-quorum/): Extends web3.js to support GoQuorum and Hyperledger Besu specific APIs
-* Zero Knowledge on GoQuorum
-   * [ZSL on GoQuorum](https://github.com/ConsenSys/zsl-q/)
-   * [Anonymous Zether](https://github.com/ConsenSys/anonymous-zether)
+returns
 
+INFO [12-08|05:37:18.131] Starting Geth on Ethereum mainnet... 
+INFO [12-08|05:37:18.131] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [12-08|05:37:18.131] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-08|05:37:18.132] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-08|05:37:18.160] Set global gas cap                       cap=25000000
+INFO [12-08|05:37:18.160] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-08|05:37:18.160] Allocated trie memory caches             clean=1023.00MiB dirty=1024.00MiB
+INFO [12-08|05:37:18.160] Allocated cache and file handles         database=/Users/brendanplayford/Library/Ethereum/geth/chaindata cache=2.00GiB ...
+...
+INFO [12-08|05:37:18.751] Started P2P networking                   self=enode://162cfffb34b0c3e76abeb9f31541737fcd3b622e35fa3b0080a14dfb9d2a53168ac3abf10122b79d3b8d7d55516982e0f903d179916ccb51abe5cd00de1bdb07@127.0.0.1:30303
+INFO [12-08|05:37:18.752] IPC endpoint opened                      url=/Users/brendanplayford/Library/Ethereum/geth.ipc isMultitenant=false
+INFO [12-08|05:37:18.752] Security Plugin is not enabled 
+Fatal: Consensus not specified. Exiting!!
+```
+## Initialize the node
+Navigate to the `node` directory and initialize the first node.
+The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../genesis.json`
 
+Run the following command
+```
+cd node
+geth --datadir data init ../genesis.json
+```
+You will get the following output;
+```
+INFO [12-09|18:22:24.031] Running with private transaction manager disabled - quorum private transactions will not be supported 
+INFO [12-09|18:22:24.035] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-09|18:22:24.063] Set global gas cap                       cap=25000000
+INFO [12-09|18:22:24.064] Allocated cache and file handles         database=/Users/brendanplayford/masa/masa-node-v1.0/node/data/geth/chaindata cache=16.00MiB handles=16
+INFO [12-09|18:22:24.135] Writing custom genesis block 
+INFO [12-09|18:22:24.140] Persisted trie from memory database      nodes=7 size=1.02KiB time="280.583µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-09|18:22:24.141] Successfully wrote genesis state         database=chaindata hash="69b521…fb4c77"
+INFO [12-09|18:22:24.141] Allocated cache and file handles         database=/Users/brendanplayford/masa/masa-node-v1.0/node/data/geth/lightchaindata cache=16.00MiB handles=16
+INFO [12-09|18:22:24.204] Writing custom genesis block 
+INFO [12-09|18:22:24.205] Persisted trie from memory database      nodes=7 size=1.02KiB time="162.437µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-09|18:22:24.205] Successfully wrote genesis state         database=lightchaindata hash="69b521…fb4c77"
+```
 
-## Official Docker Containers
-The official docker containers can be found under https://hub.docker.com/u/quorumengineering/
+## Set your node identity
+Set your own identity of your node on the Masa protocol to be easily identified in a list of peers. 
 
-## Third Party Tools/Libraries
+For example; we name our node 'MasaMoonNode' by setting the flag `--identity MasaMoonNode` will set up an identity for your node so it can be identified as MasaMoonNode in a list of peers.
+**Update your flag `--identity MasaMoonNode` to be unique**
+## Start the node
+In the `node` directory, start the node by running the following command:
+```
+PRIVATE_CONFIG=ignore geth --identity MasaMoonNode --datadir data --bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000 --emitcheckpoints --istanbul.blockperiod 1 --mine --miner.threads 1 --syncmode full --verbosity 5 --networkid 190250 --rpc --rpccorsdomain "*" --rpcvhosts "*" --rpcaddr 127.0.0.1 --rpcport 8545 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --port 30300
+```
+### Additional Bootnodes
+Masa operates several bootnodes, one is already included in the comnand above by default. If you are having issues connecting to the bootnode please use an alternaitve from the list below.
 
-The following GoQuorum-related libraries/applications have been created by Third Parties and as such are not specifically endorsed by J.P. Morgan.  A big thanks to the developers for improving the tooling around GoQuorum!
+We are also looking for community run bootnodes to add to our list. Please reach out to us on Discord or Submit a PR to this repo if you want to add a bootnode to the community list.
+#### Masa Bootnodes
+```
+enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000
 
-* [Quorum Blockchain Explorer](https://github.com/web3labs/epirus-free) - a Blockchain Explorer for GoQuorum which supports viewing private transactions
-* [Quorum-Genesis](https://github.com/davebryson/quorum-genesis) - A simple CL utility for GoQuorum to help populate the genesis file with voters and makers
-* [Quorum Maker](https://github.com/synechron-finlabs/quorum-maker/) - a utility to create GoQuorum nodes
-* [ERC20 REST service](https://github.com/web3labs/erc20-rest-service) - a GoQuorum-supported RESTful service for creating and managing ERC-20 tokens
-* [Nethereum Quorum](https://github.com/Nethereum/Nethereum/tree/master/src/Nethereum.Quorum) - a .NET GoQuorum adapter
-* [web3j-quorum](https://github.com/web3j/web3j-quorum) - an extension to the web3j Java library providing support for the GoQuorum API
-* [Apache Camel](http://github.com/apache/camel) - an Apache Camel component providing support for the GoQuorum API using web3j library. Here is the artcile describing how to use Apache Camel with Ethereum and GoQuorum https://medium.com/@bibryam/enterprise-integration-for-ethereum-fa67a1577d43
+enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000
 
-## Contributing
-GoQuorum is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [info@goquorum.com](mailto:info@goquorum.com). Please see the [Contributors guide](.github/CONTRIBUTING.md) for more information about the process.
+enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000
 
-## Reporting Security Bugs
-Security is part of our commitment to our users. At GoQuorum we have a close relationship with the security community, we understand the realm, and encourage security researchers to become part of our mission of building secure reliable software. This section explains how to submit security bugs, and what to expect in return.
-
-All security bugs in [GoQuorum](https://github.com/consensys/quorum) and its ecosystem ([Tessera](https://github.com/consensys/tessera), [Cakeshop](https://github.com/consensys/cakeshop), ..etc)  should be reported by email to [security-quorum@consensys.net](mailto:security-quorum@consensys.net). Please use the prefix **[security]** in your subject. This email is delivered to GoQuorum security team. Your email will be acknowledged, and you'll receive a more detailed response to your email as soon as possible indicating the next steps in handling your report. After the initial reply to your report, the security team will endeavor to keep you informed of the progress being made towards a fix and full announcement.
-
-If you have not received a reply to your email or you have not heard from the security team please contact any team member through GoQuorum slack security channel. **Please note that GoQuorum discord channels are public discussion forum**. When escalating to this medium, please do not disclose the details of the issue. Simply state that you're trying to reach a member of the security team.
-
-#### Responsible Disclosure Process
-GoQuorum project uses the following responsible disclosure process:
-
-- Once the security report is received it is assigned a primary handler. This person coordinates the fix and release process.
-- The issue is confirmed and a list of affected software is determined.
-- Code is audited to find any potential similar problems.
-- If it is determined, in consultation with the submitter, that a CVE-ID is required, the primary handler will trigger the process.
-- Fixes are applied to the public repository and a new release is issued.
-- On the date that the fixes are applied, announcements are sent to Quorum-announce.
-- At this point you would be able to disclose publicly your finding.
-
-**Note:** This process can take some time. Every effort will be made to handle the security bug in as timely a manner as possible, however it's important that we follow the process described above to ensure that disclosures are handled consistently.
-
-#### Receiving Security Updates
-The best way to receive security announcements is to subscribe to the Quorum-announce mailing list/channel. Any messages pertaining to a security issue will be prefixed with **[security]**.
-
-Comments on This Policy
-If you have any suggestions to improve this policy, please send an email to info@goquorum.com for discussion.
-
-## License
-
-The go-ethereum library (i.e. all code outside of the `cmd` directory) is licensed under the
-[GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html), also
-included in our repository in the `COPYING.LESSER` file.
-
-The go-ethereum binaries (i.e. all code inside of the `cmd` directory) is licensed under the
-[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), also included
-in our repository in the `COPYING` file.
-
-Any project planning to use the `crypto/secp256k1` sub-module must use the specific [secp256k1 standalone library](https://github.com/ConsenSys/goquorum-crypto-secp256k1) licensed under 3-clause BSD.
+enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000
+```
+#### Community Bootnodes
+Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
+## Node Syncing
+It can take some time for your node to fully sync to the Masa Testnet 2.0 - please be patient while your node catches up with the most recent blocks.
+## Node UI
+You must be running Docker to run the Node UI with geth
+### Specification
+- React.js & Typescript
+- Docker for deployment
+## Run The Masa Node UI
+Follow these instructions to run the Node UI with geth
+```
+cd masa-node-v1.0
+cd src
+cd ui
+docker-compose up ui
+```
+Navigate to you local host to interact with the Masa Node
+`http://localhost:3000`
