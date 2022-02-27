@@ -1,7 +1,7 @@
 # Masa Testnet Node V1.01
 ## Release Date
 February 22nd, 2022
-##Requirements
+## Requirements
 Tested with: Go Version 1.16.14
 Download [here](https://go.dev/dl/)
 ## Roadmap & Todo's
