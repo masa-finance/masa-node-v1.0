@@ -11,14 +11,6 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
-**/geth
-**/keystore
-**geth.ipc
-**/build/bin
-# geth node build files 
-
 # OS generated files #
 ######################
 *.DS_Store

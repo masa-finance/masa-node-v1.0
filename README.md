@@ -1,8 +1,11 @@
 # Masa Testnet Node V1.01
 ## Release Date
 February 22nd, 2022
+## Requirements
+Tested with: Go Version 1.16.14
+Download [here](https://go.dev/dl/)
 ## Roadmap & Todo's
-The Masa Node UI is in alpha and will get incremental releases, please report all bugs you find to bugs@masa.finance or submit an issue [here](https://github.com/masa-finance/masa-node-v1.0/issues)
+The Masa Node UI is in alpha and will get incremental releases, please report all bugs you find as an issue [here](https://github.com/masa-finance/masa-node-v1.0/issues)
 # Run With Docker
 This guide will get you up and running using docker. If you want to us the geth binary please navigate to the bottom section of the page [here](#run-with-geth).
 ## Get Docker
@@ -45,7 +48,7 @@ masa-node-v1/
 
 1. __Note__: to attach geth to your node Javascript console (use the same container id or name from `docker ps`
    ```sh
-   docker exec -it masa-node-v10_masa-node_1 
+   docker exec -it masa-node-v10_masa-node_1 /bin/sh
    geth attach /qdata/dd/geth.ipc
 
    Welcome to the Geth JavaScript console!
@@ -149,12 +152,12 @@ Fatal: Consensus not specified. Exiting!!
 ```
 ## Initialize the node
 Navigate to the `node` directory and initialize the first node.
-The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../genesis.json`
+The repo directory includes the `genesis.json` file that is used to connect to the Masa protocol at the following path `../network/testnet/genesis.json`
 
 Run the following command
 ```
 cd node
-geth --datadir data init ../genesis.json
+geth --datadir data init ../network/testnet/genesis.json
 ```
 You will get the following output;
 ```
