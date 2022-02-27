@@ -21,14 +21,16 @@ x-masa-testnet-node-v10-def:
     - -c
     - |
       DDIR=/qdata/dd
-      rm -rf $${DDIR}
-      mkdir -p $${DDIR}/keystore
-      mkdir -p $${DDIR}/geth
       GENESIS_FILE="/network/genesis.json"
       CONSENSUS_RPC_API="istanbul"
       NETWORK_ID=$$(cat $${GENESIS_FILE} | grep chainId | awk -F " " '{print $$2}' | awk -F "," '{print $$1}')
       GETH_ARGS_istanbul="--emitcheckpoints --istanbul.blockperiod 1 --mine --miner.threads 1 --syncmode full"
-      geth --datadir $${DDIR} init $${GENESIS_FILE}
+      if [ ! -f $${DDIR}/control_file ]; then
+        mkdir -p $${DDIR}/keystore
+        mkdir -p $${DDIR}/geth
+        geth --datadir $${DDIR} init $${GENESIS_FILE}
+        echo "Created $$(date)" > $${DDIR}/control_file
+      fi
       geth \
         --identity node$${NODE_ID}-${MASA_CONSENSUS:-istanbul} \
         --datadir $${DDIR} \
