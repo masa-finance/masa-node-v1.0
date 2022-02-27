@@ -47,10 +47,10 @@ x-masa-testnet-node-v10-def:
         --nousb \
         ${MASA_GETH_ARGS:-} $${GETH_ARGS_${MASA_CONSENSUS:-istanbul}}
 services:
-  ui:
-    extends:
-      file: ./src/ui/docker-compose.yml
-      service: ui
+#   ui:
+#     extends:
+#       file: ./src/ui/docker-compose.yml
+#       service: ui
   masa-node:
     << : *masa-testnet-node-v10-def
     hostname: masa-node
