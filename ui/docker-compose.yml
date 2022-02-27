@@ -1,0 +1,6 @@
+version: '3.6'
+services:
+  ui:
+    image: masafinance/node-ui
+    ports:
+      - 3000:3000
