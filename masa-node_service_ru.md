@@ -57,10 +57,13 @@ geth --datadir data init ./network/testnet/genesis.json
 exit
 ```
 
-### создаем сервис (сменить my-node на уникальное)
+### создаем сервис (сменить my-node на уникальное, не использовать пробел < > |)
 ```
 sudo -i
-NODE_NAME="my-node" # <-тут изменить не использовать пробел < > |
+NODE_NAME="Измени-имя_ноды"
+```
+
+```
 sudo tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
 Description=MASA
