@@ -10,6 +10,10 @@
 
 ## Тут опционально следует тюнинг системы (вынесен ниже по тексту)
 
+
+### Устанавливаем полезные пакеты 
+`sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y`
+
 ### Создадим пользователя
 ```
 addgroup p2p 
@@ -131,9 +135,6 @@ rm -rf /var/lib/snapd
 sudo systemctl mask unattended-upgrades.service
 sudo systemctl stop unattended-upgrades.service
 ```
-
-### Устанавливаем полезные пакеты 
-`sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y`
 
 ### Статус строка  screen (опционально)
 ```
