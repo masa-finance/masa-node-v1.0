@@ -49,7 +49,7 @@ x-masa-testnet-node-v10-def:
 services:
   ui:
     extends:
-      file: ./src/ui/docker-compose.yml
+      file: ./ui/docker-compose.yml
       service: ui
   masa-node:
     << : *masa-testnet-node-v10-def
