@@ -120,7 +120,13 @@ sudo systemctl restart masad
 sudo systemctl status masad
 ```
 
-### Проверка логов
+## Готово, нода установлена
+
+---
+
+# Работа с нодой
+
+### Проверка логов (обычно не нужна, просто для примера - можно пропустить)
 вариант 1 - полный лог 
 ```
 journalctl -u masad -f
@@ -129,6 +135,7 @@ journalctl -u masad -f
 ```
 journalctl -u masad -f |grep "new block"
 ```
+Выход из просмотра логов по Ctrl+c
 
 ### Так запускается консоль управления нодой (geth консоль)
 ```
