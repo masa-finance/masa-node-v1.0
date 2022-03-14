@@ -1,25 +1,35 @@
-# Установка Masa node
+---
+## **Обратите внимание, код разбит на блоки умышленно, блок состоящий из нескольких строк можно копировать и запускать целиком. (используя кнопку копирования в правом верхрем углу блока)**
+## Установка происходит для пользователя masa, который создается в процессе. Этот пользователь является безопасным ко взлому, у него нет прав sudo, нет пароля, нет терминала по умолчанию и нет прав подключения извне.
+## Команды установки могут выполняться под любым начальным пользователем (как root, так и обычным ), в процессе предусмотрены повышения привелегий которые в случае обычного пользователя будут запрашивать его пароль.
+---
 
-базовые требования к серверу
-2 CPU/4 GB RAM/80 GB HDD
+# Установка Masa node ("Вариант установки как сервис")
+
+_базовые требования к серверу
+2 CPU/4 GB RAM/80 GB HDD_
 
 ## Устанавливаем ubuntu 20.04 LTS Server (в минимальном текстовом режиме)
 
+
 ### Обновляем Ubuntu
-`sudo apt-get update && sudo apt-get upgrade -y`
+```
+sudo apt-get update && sudo apt-get upgrade -y
+```
 
 ## Тут опционально следует тюнинг системы (вынесен ниже по тексту)
 
 
 ### Устанавливаем полезные пакеты 
-`sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y`
-
-### Создадим пользователя
 ```
-addgroup p2p 
-adduser masa --ingroup p2p --disabled-password --disabled-login --shell /usr/sbin/nologin --gecos ""
+sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y
 ```
 
+### Создадим пользователя masa
+```
+sudo addgroup p2p 
+sudo adduser masa --ingroup p2p --disabled-password --disabled-login --shell /usr/sbin/nologin --gecos ""
+```
 
 ### Install GO 1.17.5
 ```
@@ -34,22 +44,36 @@ source ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
 ```
 
-### Устанавливаем ноду
+### Собираем бинарные пакеты ноды
 ```
 sudo su masa -s /bin/bash
+```
+
+```
 cd ~
 source ~/.profile
-
 git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0/src
 make all
 exit
-sudo cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
 ```
 
-### Init masa-node
+### устанавливаем бинарные пакеты в систему
+```
+sudo -i 
+```
+
+```
+cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
+exit
+```
+
+### Инициализация ноды
 ```
 sudo su masa -s /bin/bash
+```
+
+```
 cd ~
 source ~/.profile
 cd $HOME/masa-node-v1.0
@@ -57,14 +81,17 @@ geth --datadir data init ./network/testnet/genesis.json
 exit
 ```
 
-### создаем сервис (сменить my-node на уникальное, не использовать пробел < > |)
+### Cоздаем сервис (сменить my-node на уникальное, не использовать пробел < > |)
 ```
 sudo -i
+```
+
+```
 NODE_NAME="Измени-имя_ноды"
 ```
 
 ```
-sudo tee /etc/systemd/system/masad.service > /dev/null <<EOF
+tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
 Description=MASA
 After=network.target
@@ -82,30 +109,68 @@ EOF
 exit
 ```
 
-### Запуск сервиса
+### Запуск сервиса, включение автозагрузки и проверка статуса 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
+```
+
+```
 sudo systemctl status masad
 ```
 
 ### Проверка логов
-вариант 1 - полный лог `journalctl -u masad -f`
-вариант 2 - лог с фильтром `journalctl -u masad -f |grep "new block"`
+вариант 1 - полный лог 
+```
+journalctl -u masad -f
+```
+вариант 2 - лог с фильтром 
+```
+journalctl -u masad -f |grep "new block"
+```
 
-### status ETH node
-`geth attach ipc:/home/masa/masa-node-v1.0/data/geth.ipc`
+### Так запускается консоль управления нодой (geth консоль)
+```
+geth attach ipc:/home/masa/masa-node-v1.0/data/geth.ipc
+```
 
-примеры комманд
+## примеры комманд geth консоли
+
+Каталог ноды (там и вся цепочка хранится и конфиги ноды с ключами и кошельки )
 ```
 admin.datadir
+```
+
+Проверка подключения к сети (верный ответ true)
+```
 net.listening
-eth.syncing
+```
+
+Проверка числа активных подключений (верный ответ больше нуля)
+```
 net.peerCount
+```
+
+Проверка нахождения в состоянии синхронизации (верный ответ false, но он бывает как в полном начале когда еще ничего не скачано, так и в случае полной синхронизации с сетью).
+В процессе выдает увеличивающиеся значения первой строки до совпадения со второй.
+```
+eth.syncing
+```
+
+Проверка общего состояния ноды (Смотрим на строку  difficulty: , она должна быть больше еденицы и равна текущему блоку. текущий блок можно спросить у коллег)
+```
 admin.nodeInfo
-admin.peers
+```
+
+Полный перечень всех подключений (короткий список)
+```
 admin.peers.forEach(function(value){console.log(value.network.remoteAddress+"\t"+value.name)})
+```
+
+Полный перечень всех подключений (длинный список)
+```
+admin.peers
 ```
 
 
@@ -127,11 +192,27 @@ rm -rf /var/lib/snapd
 ```
 
 ### Удалить привязку к облаку (опционально)
-`sudo touch /etc/cloud/cloud-init.disabled`
-`dpkg-reconfigure cloud-init`  # выключить все флажки кроме последноего "None"
-`sudo apt-get purge cloud-init`
-`sudo rm -rf /etc/cloud/ && sudo rm -rf /var/lib/cloud/`
-`sudo reboot`
+```
+sudo touch /etc/cloud/cloud-init.disabled
+```
+
+  # выключить все флажки кроме последноего "None"
+```
+dpkg-reconfigure cloud-init
+```
+
+```
+sudo apt-get purge cloud-init
+```
+
+```
+sudo rm -rf /etc/cloud/ && sudo rm -rf /var/lib/cloud/
+```
+
+Тут внимательно - будет перезагрузка (отвязка от облачных сервисов требует перезагрузки)
+```
+sudo reboot
+```
 
 ### Выключить автоапгрейд (опционально)
 ```
@@ -151,16 +232,18 @@ defscrollback 10000
 `timedatectl list-timezones` # тут смотрим вывод и выбираем свою зону
 `timedatectl set-timezone Europe/Moscow` # задаем выбранную
 
-```bash
+```
 apt-get install ntp
 sntp --version
 ```
 >sntp 4.2.8p12@1.3728-o (1)
 
-```bash
+```
 nano /etc/ntp.conf
 ```
-```bash 
+
+произвести вот такие правки
+```
 # pool 0.ubuntu.pool.ntp.org iburst
 # pool 1.ubuntu.pool.ntp.org iburst
 # pool 2.ubuntu.pool.ntp.org iburst
