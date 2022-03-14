@@ -81,7 +81,7 @@ geth --datadir data init ./network/testnet/genesis.json
 exit
 ```
 
-### Cоздаем сервис (сменить my-node на уникальное, не использовать пробел < > |)
+### Cоздаем сервис (сменить NODE_NAME на уникальное, не использовать пробел < > |)
 ```
 sudo -i
 ```
