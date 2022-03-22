@@ -4,7 +4,8 @@
 ## Команды установки могут выполняться под любым начальным пользователем (как root, так и обычным ), в процессе предусмотрены повышения привелегий которые в случае обычного пользователя будут запрашивать его пароль.
 ---
 
-# Установка Masa node ("Вариант установки как сервис") актуально для Release v1.03-testnet.2.0
+# Установка Masa node ("Вариант установки как сервис") актуально для Release v1.03-testnet.2.0 
+## инструкция обновления ниже (https://github.com/setar/masa-node-v1.0/blob/main/masa-node_service_ru.md#update-masa-node-to-release-v103-testnet20)
 
 _базовые требования к серверу
 2 CPU/4 GB RAM/80 GB HDD_
@@ -101,7 +102,7 @@ User=masa
 ExecStart=/usr/local/bin/geth \\
 --identity ${NODE_NAME} \\
 --datadir /home/masa/masa-node-v1.0/data \\
---bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://c4430473f2774e17f7a83b389bdb6c6055e9de21263f014be4c88f0a117fa13e6cd14cce22abd0ebbe366863dea1687fa2eac45be7c25075db0f06dd42c27478@45.56.101.144:30303 \\
+--bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000,enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000,enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000 \\
 --emitcheckpoints \\
 --istanbul.blockperiod 10 \\
 --mine \\
@@ -265,7 +266,7 @@ User=masa
 ExecStart=/usr/local/bin/geth \\
 --identity ${NODE_NAME} \\
 --datadir /home/masa/masa-node-v1.0/data \\
---bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://c4430473f2774e17f7a83b389bdb6c6055e9de21263f014be4c88f0a117fa13e6cd14cce22abd0ebbe366863dea1687fa2eac45be7c25075db0f06dd42c27478@45.56.101.144:30303 \\
+--bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000,enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000,enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000 \\
 --emitcheckpoints \\
 --istanbul.blockperiod 10 \\
 --mine \\
