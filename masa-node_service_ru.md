@@ -90,7 +90,7 @@ sudo -i
 ```
 NODE_NAME="Измени-имя_ноды"
 ```
-
+!!! в следующем блоке имя ноды не меняем
 ```
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
@@ -254,7 +254,7 @@ sudo -i
 ```
 NODE_NAME="Измени-имя_ноды"
 ```
-
+!!! в следующем блоке имя ноды не меняем
 ```
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
