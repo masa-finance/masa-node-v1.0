@@ -4,7 +4,7 @@
 ## Команды установки могут выполняться под любым начальным пользователем (как root, так и обычным ), в процессе предусмотрены повышения привелегий которые в случае обычного пользователя будут запрашивать его пароль.
 ---
 
-# Установка Masa node ("Вариант установки как сервис")
+# Установка Masa node ("Вариант установки как сервис") актуально для Release v1.03-testnet.2.0
 
 _базовые требования к серверу
 2 CPU/4 GB RAM/80 GB HDD_
@@ -98,7 +98,24 @@ After=network.target
 [Service]
 Type=simple
 User=masa
-ExecStart=/usr/local/bin/geth --identity ${NODE_NAME} --datadir /home/masa/masa-node-v1.0/data --bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://571be7fe060b183037db29f8fe08e4fed6e87fbb6e7bc24bc34e562adf09e29e06067be14e8b8f0f2581966f3424325e5093daae2f6afde0b5d334c2cd104c79@142.132.135.228:21000,enode://269ecefca0b4cd09bf959c2029b2c2caf76b34289eb6717d735ce4ca49fbafa91de8182dd701171739a8eaa5d043dcae16aee212fe5fadf9ed8fa6a24a56951c@65.108.72.177:21000 --emitcheckpoints --istanbul.blockperiod 1 --mine --miner.threads 1 --syncmode full --verbosity 4 --networkid 190250 --rpc --rpccorsdomain "*" --rpcvhosts "*" --rpcaddr 127.0.0.1 --rpcport 8545 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --port 30300 
+ExecStart=/usr/local/bin/geth \\
+--identity ${NODE_NAME} \\
+--datadir /home/masa/masa-node-v1.0/data \\
+--bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://c4430473f2774e17f7a83b389bdb6c6055e9de21263f014be4c88f0a117fa13e6cd14cce22abd0ebbe366863dea1687fa2eac45be7c25075db0f06dd42c27478@45.56.101.144:30303 \\
+--emitcheckpoints \\
+--istanbul.blockperiod 10 \\
+--mine \\
+--miner.threads 1 \\
+--syncmode full \\
+--verbosity 5 \\
+--networkid 190260 \\
+--rpc \\
+--rpccorsdomain "*" \\
+--rpcvhosts "*" \\
+--rpcaddr 127.0.0.1 \\
+--rpcport 8545 \\
+--rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \\
+--port 30300
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=4096
@@ -179,9 +196,112 @@ admin.peers.forEach(function(value){console.log(value.network.remoteAddress+"\t"
 ```
 admin.peers
 ```
+## Update Masa Node to Release v1.03-testnet.2.0
+
+```
+systemctl stop masad
+sudo su masa -s /bin/bash
+```
+
+### удалим прежнюю цепочку монеты и ранее собранные бинарные пакеты затем обновим репозитарий
+```
+. ~/.profile
+cd ~/masa-node-v1.0
+find data/geth/* -type f -not -name 'nodekey' -delete
+rm -f src/build/bin/*
+git pull
+```
+### собираем бинарные пакеты
+```
+cd ~/masa-node-v1.0/src
+make all
+exit
+```
+
+### устанавливаем бинарные пакеты в систему
+
+```
+sudo -i 
+```
+
+```
+cp -f /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
+exit
+```
+
+### Инициализация ноды
+
+```
+sudo su masa -s /bin/bash
+```
+
+```
+cd ~
+source ~/.profile
+cd $HOME/masa-node-v1.0
+geth --datadir data init ./network/testnet/genesis.json
+exit
+```
 
 
-# Опцианальный тюнинг системы
+### Обновим файл сервиса (сменить NODE_NAME на уникальное, не использовать пробел < > |)
+
+```
+sudo -i
+```
+
+```
+NODE_NAME="Измени-имя_ноды"
+```
+
+```
+tee /etc/systemd/system/masad.service > /dev/null <<EOF
+[Unit]
+Description=MASA
+After=network.target
+[Service]
+Type=simple
+User=masa
+ExecStart=/usr/local/bin/geth \\
+--identity ${NODE_NAME} \\
+--datadir /home/masa/masa-node-v1.0/data \\
+--bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://c4430473f2774e17f7a83b389bdb6c6055e9de21263f014be4c88f0a117fa13e6cd14cce22abd0ebbe366863dea1687fa2eac45be7c25075db0f06dd42c27478@45.56.101.144:30303 \\
+--emitcheckpoints \\
+--istanbul.blockperiod 10 \\
+--mine \\
+--miner.threads 1 \\
+--syncmode full \\
+--verbosity 5 \\
+--networkid 190260 \\
+--rpc \\
+--rpccorsdomain "*" \\
+--rpcvhosts "*" \\
+--rpcaddr 127.0.0.1 \\
+--rpcport 8545 \\
+--rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \\
+--port 30300
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+Environment="PRIVATE_CONFIG=ignore"
+[Install]
+WantedBy=multi-user.target
+EOF
+exit
+```
+
+### Запуск сервиса, включение автозагрузки и проверка статуса
+
+```
+sudo systemctl daemon-reload
+sudo systemctl enable masad
+sudo systemctl restart masad
+sudo systemctl status masad
+```
+
+## Готово, нода обновлена
+
+# Опциональный тюнинг системы
 ### Удаляем снапы из системы (опционально)
 ```
 snap list
