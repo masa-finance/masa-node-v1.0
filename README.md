@@ -86,6 +86,7 @@ enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f
 ```
 enode://571be7fe060b183037db29f8fe08e4fed6e87fbb6e7bc24bc34e562adf09e29e06067be14e8b8f0f2581966f3424325e5093daae2f6afde0b5d334c2cd104c79@142.132.135.228:21000
 enode://269ecefca0b4cd09bf959c2029b2c2caf76b34289eb6717d735ce4ca49fbafa91de8182dd701171739a8eaa5d043dcae16aee212fe5fadf9ed8fa6a24a56951c@65.108.72.177:21000
+enode://c34b298e32186eb8b870f0a1b7c5963a5e63b578e2b9ceff5a71defda1d7c827314c178d9d4d02e04fe3ad84093ea8e2f0eac2e0c0308d51b04761b1951130d8@92.63.195.159:21000
 ```
 Submit a PR to add a bootnode to the community list [here](https://github.com/masa-finance/masa-node-v1.0/pulls). 
 ## Node Syncing
