@@ -220,7 +220,6 @@ You must be running Docker to run the Node UI with geth
 Follow these instructions to run the Node UI with geth
 ```
 cd masa-node-v1.0
-cd src
 cd ui
 docker-compose up ui
 ```
