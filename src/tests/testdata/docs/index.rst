@@ -10,20 +10,41 @@ Ethereum Tests
 .. note::
    See :ref:`contribute` if you want to help improve this documentation.
 
+
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-   
-   test_types/blockchain_tests.rst
-   test_types/state_tests.rst
-   test_types/rlp_tests.rst
-   test_types/difficulty_tests.rst
-   test_types/transaction_tests.rst
-   test_types/vm_tests.rst
-   generating-tests.rst
+   :maxdepth: 3
+   :caption: Tutorial:
+
+   retesteth-tutorial.rst
+   state-transition-tutorial.rst
+   blockchain-tutorial.rst
+   eip-tutorial.rst
+   internals-tutorial.rst
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Retesteth Reference:
+
+   retesteth-ref.rst
+   config-dir.rst
+   t8ntool-ref.rst
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Test Reference:
+  
+   blockchain-ref.rst
+   state-transition-ref.rst
+   vm-ref.rst
+   sample-values.rst
+
    contribute.rst
 
-   
+
+
 
 Indices and tables
 ==================

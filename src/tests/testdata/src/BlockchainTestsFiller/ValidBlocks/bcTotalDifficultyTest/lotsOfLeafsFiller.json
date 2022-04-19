@@ -11,10 +11,11 @@
             "//comment" : "       3 (288 ~)",
             "//comment" : "       3 (288 9)",
             "//comment" : "       3 (288 inv)",
-            "//comment" : "       3 (288 11)"
+            "//comment" : "       3 (288 11)",
+            "comment" : "Many chains with the same totaldifficulty. NOTE: fixate difficulty as clients might calculate it differently depends on SealEngine"
         },
         "genesisBlockHeader" : {
-            "bloom" : "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "bloom" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
             "coinbase" : "0x8888f1f195afa192cfee860698584c030f4c9db1",
             "difficulty" : "231072",
             "extraData" : "0x42",
@@ -35,17 +36,17 @@
 	    {
 		    "network" : [">=Istanbul"],
 		    "result" : {
-			    "095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
+			    "0x095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
     				"balance" : "4"
 			    },
-			    "a94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+			    "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
 	    			"nonce" : "3"
 			    }
 		    }
 	    }
         ],
         "pre" : {
-            "a94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+            "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
                 "balance" : "10000000000000",
                 "nonce" : "0",
                 "code" : "",
@@ -62,7 +63,7 @@
                         "gasPrice" : "1",
                         "nonce" : "0",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "0"
                     }
                 ],
@@ -78,7 +79,7 @@
                         "gasPrice" : "1",
                         "nonce" : "1",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "0"
                     }
                 ],
@@ -98,7 +99,7 @@
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "1"
                     }
                 ],
@@ -120,7 +121,7 @@
                         "gasPrice" : "1343",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "2"
                     }
                 ],
@@ -137,12 +138,12 @@
                 "transactions" : [
                     {
                         "invalid" : "1",
-                        "data" : "0x342354353460",
+                        "data" : ":raw 0x342354353460",
                         "gasLimit" : "314143359",
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "3"
                     }
                 ],
@@ -165,7 +166,7 @@
                         "gasPrice" : "3331",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "4"
                     }
                 ],
@@ -181,12 +182,12 @@
                 },
                 "transactions" : [
                     {
-                        "data" : "0x44634634",
+                        "data" : ":raw 0x44634634",
                         "gasLimit" : "314159",
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "5"
                     }
                 ],
@@ -196,6 +197,10 @@
             {
                 "blocknumber" : "3",
                 "//blocknumber" : "8",
+                "blockHeader" : {
+                    "//difficulty" : "209493 instead of 206229 (all of the others)",
+                    "difficulty" : "199293"
+                },
                 "transactions" : [
                     {
                         "data" : "",
@@ -203,7 +208,7 @@
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "6"
                     }
                 ],
@@ -219,12 +224,12 @@
                 },
                 "transactions" : [
                     {
-                        "data" : "0x34534540",
+                        "data" : ":raw 0x34534540",
                         "gasLimit" : "31509",
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "7"
                     }
                 ],
@@ -279,7 +284,7 @@
                         "gasPrice" : "100000000000",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "10"
                     }
                 ],
@@ -300,7 +305,7 @@
                         "gasPrice" : "10",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "11"
                     }
                 ],

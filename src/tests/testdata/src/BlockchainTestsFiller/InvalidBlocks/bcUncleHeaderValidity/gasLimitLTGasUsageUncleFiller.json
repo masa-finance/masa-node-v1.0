@@ -1,7 +1,7 @@
 {
     "gasLimitLTGasUsageUncle" : {
         "genesisBlockHeader" : {
-            "bloom" : "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "bloom" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
             "coinbase" : "0x8888f1f195afa192cfee860698584c030f4c9db1",
             "difficulty" : "131072",
             "extraData" : "0x42",
@@ -17,22 +17,22 @@
             "transactionsTrie" : "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
             "uncleHash" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
         },
-	"sealEngine" : "NoProof",
-	"expect" : [
+    	"sealEngine" : "NoProof",
+    	"expect" : [
 	    {
 		    "network" : [">=Istanbul"],
 		    "result" : {
-			    "095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
-				"balance" : "20"
+			    "0x095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
+    				"balance" : "20"
 			    },
-			    "a94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
-				"nonce" : "2"
+			    "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+    				"nonce" : "2"
 			    }
 		    }
 	    }
         ],
         "pre" : {
-            "a94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+            "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
                 "balance" : "10000000000000",
                 "nonce" : "0",
                 "code" : "",
@@ -41,7 +41,7 @@
         },
         "blocks" : [
             {
-		"blocknumber" : "1",
+		        "blocknumber" : "1",
                 "transactions" : [
                     {
                         "data" : "",
@@ -49,7 +49,7 @@
                         "gasPrice" : "1",
                         "nonce" : "0",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "10"
                     }
                 ],
@@ -57,7 +57,7 @@
                 ]
             },
             {
-		"blocknumber" : "2",
+        		"blocknumber" : "2",
                 "transactions" : [
                     {
                         "data" : "",
@@ -65,7 +65,7 @@
                         "gasPrice" : "1",
                         "nonce" : "1",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "10"
                     }
                 ],
@@ -75,10 +75,10 @@
             {	
                 "blocknumber" : "3",
                 "blockHeader" : {
-                    "stateRoot" : "0x77f96f4c766c10cd0207e2672b1b747c741ed75bc94e7be7abacb71cdca3c8fb",
-                    "expectException" : {
-                        "Istanbul" : "TooMuchGasUsed"
-                    }
+                    "stateRoot" : "0x77f96f4c766c10cd0207e2672b1b747c741ed75bc94e7be7abacb71cdca3c8fb"
+                },
+                "expectException" : {
+                    ">=Istanbul" : "TooMuchGasUsed"
                 },
                 "transactions" : [
                     {
@@ -87,15 +87,14 @@
                         "gasPrice" : "1",
                         "nonce" : "2",
                         "secretKey" : "45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8",
-                        "to" : "095e7baea6a6c7c4c2dfeb977efac326af552d87",
+                        "to" : "0x095e7baea6a6c7c4c2dfeb977efac326af552d87",
                         "value" : "10"
                     }
                 ],
                 "uncleHeaders" : [
                     {
                         "populateFromBlock" : "1",
-                        "gasUsed" : "314159000",
-                        "overwriteAndRedoPoW" : "gasUsed"
+                        "gasUsed" : "314159000"
                     }
                 ]
             }
