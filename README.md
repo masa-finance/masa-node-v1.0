@@ -2,7 +2,7 @@
 ## Release Date
 February 22nd, 2022
 ## Requirements
-Tested with: Go Version 1.16.14
+Tested with: Go Version 1.19.3
 Download [here](https://go.dev/dl/)
 ## Roadmap & Todo's
 The Masa Node UI is in alpha and will get incremental releases, please report all bugs you find as an issue [here](https://github.com/masa-finance/masa-node-v1.0/issues)
