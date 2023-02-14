@@ -11,7 +11,7 @@ require (
 	github.com/Azure/azure-storage-blob-go v0.7.0
 	github.com/BurntSushi/toml v0.3.1
 	github.com/VictoriaMetrics/fastcache v1.5.7
-	github.com/aws/aws-sdk-go v1.25.48
+	github.com/aws/aws-sdk-go v1.34.0
 	github.com/btcsuite/btcd v0.20.1-beta
 	github.com/cespare/cp v0.1.0
 	github.com/cloudflare/cloudflare-go v0.10.2-0.20190916151808-a80f83b9add9
@@ -79,4 +79,5 @@ require (
 	gopkg.in/oleiade/lane.v1 v1.0.0
 	gopkg.in/urfave/cli.v1 v1.20.0
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gotest.tools/v3 v3.4.0 // indirect
 )
